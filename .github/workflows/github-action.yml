@@ -11,10 +11,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: SCP files via ssh key
-        uses: actions/checkout@v2
-      - name: install sshpass
-        run: apt install sshpass
-      - name: do scp
-        run: sshpass -p ${{ secrets.SERVER_PASSWORD }} scp -r . ${{ secrets.SERVER_USER_NAME }}@${{ secrets.SERVER_IP }}:/srcmain
+    - uses: actions/checkout@master
+    - name: copy file via ssh password
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.SERVER_IP }}
+        username: ${{ secrets.SERVER_USER_NAME }}
+        password: ${{ secrets.SERVER_PASSWORD }}
+        source: "candy-machine-mint"
+        target: "/mySrc"
 
