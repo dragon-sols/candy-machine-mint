@@ -19,5 +19,5 @@ jobs:
         username: ${{ secrets.SERVER_USER_NAME }}
         password: ${{ secrets.SERVER_PASSWORD }}
         source: "."
-        target: "/mySrc"
+        target: "~/candy-machine-mint"
 
